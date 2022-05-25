@@ -1,7 +1,8 @@
 <resources>
-    <string name="app_name">Android-ContactsApp</string>
+    <string name="app_name">Contacts App</string>
 
     <!--region Add Contact-->
+    <string name="contact_add_label">Add Contact</string>
     <string name="contact_add_name_label">Name</string>
     <string name="contact_add_last_name_label">Last Name</string>
     <string name="contact_add_genre_label">Genre</string>
