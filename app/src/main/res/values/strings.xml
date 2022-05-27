@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Contacts App</string>
+    <!--region Home-->
+    <string name="home_go_to_add_button">Add Contact</string>
+    <!--endregion-->
 
     <!--region Add Contact-->
     <string name="contact_add_label">Add Contact</string>

@@ -1,9 +1,10 @@
-package com.r2devpros.android_contactsapp
+package com.r2devpros.android_contactsapp.presentation.addContact
 
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
+import com.r2devpros.android_contactsapp.R
 import com.r2devpros.android_contactsapp.model.Contact
 import com.r2devpros.android_contactsapp.repository.RepositoryManager
 import com.r2devpros.android_contactsapp.repository.local.room.ContactsRepo
@@ -12,12 +13,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class MainActivity : AppCompatActivity() {
+class AddContactActivity : AppCompatActivity() {
     private lateinit var repositoryManager: RepositoryManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        overridePendingTransition(R.anim.slide_out_bottom, R.anim.slide_in_bottom)
+        setContentView(R.layout.add_contact_activity_layout)
 
         repositoryManager = RepositoryManager(
             ContactsRepo(this)

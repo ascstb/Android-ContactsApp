@@ -15,8 +15,7 @@
         android:theme="@style/Theme.AndroidContactsApp"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
-            android:label="@string/contact_add_label"
+            android:name=".presentation.HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,6 +23,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".presentation.addContact.AddContactActivity"
+            android:exported="false"
+            android:label="@string/contact_add_label" />
     </application>
 
 </manifest>
