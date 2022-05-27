@@ -1,56 +1,35 @@
 package com.r2devpros.android_contactsapp.presentation.addContact
 
 import android.os.Bundle
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.textfield.TextInputEditText
+import androidx.databinding.DataBindingUtil
 import com.r2devpros.android_contactsapp.R
-import com.r2devpros.android_contactsapp.model.Contact
+import com.r2devpros.android_contactsapp.databinding.AddContactActivityLayoutBinding
 import com.r2devpros.android_contactsapp.repository.RepositoryManager
 import com.r2devpros.android_contactsapp.repository.local.room.ContactsRepo
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import timber.log.Timber
 
 class AddContactActivity : AppCompatActivity() {
-    private lateinit var repositoryManager: RepositoryManager
+    private lateinit var layout: AddContactActivityLayoutBinding
+    private lateinit var viewModel: AddContactViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         overridePendingTransition(R.anim.slide_out_bottom, R.anim.slide_in_bottom)
-        setContentView(R.layout.add_contact_activity_layout)
 
-        repositoryManager = RepositoryManager(
-            ContactsRepo(this)
-        )
+        layoutBinding()
 
-        CoroutineScope(Dispatchers.IO).launch {
-            val result = repositoryManager.getContacts()
-            Timber.d("MainActivity_TAG: onCreate: contacts: ${result.size}")
-        }
-
-        findViewById<Button>(R.id.btnAdd).setOnClickListener {
-            onAddClicked()
-        }
+        viewModel.getContacts()
     }
 
-    private fun onAddClicked() {
-        Timber.d("MainActivity_TAG: onAddClicked: ")
-        val name = findViewById<TextInputEditText>(R.id.tvName).text.toString()
-        val lastName = findViewById<TextInputEditText>(R.id.tvLastName).text.toString()
-        val genre = findViewById<TextInputEditText>(R.id.tvGenre).text.toString()
-        val age = findViewById<TextInputEditText>(R.id.tvAge).text.toString()
-
-        val contact = Contact(
-            name = name,
-            lastName = lastName,
-            genre = genre,
-            age = age.toIntOrNull() ?: 0
+    private fun layoutBinding() {
+        viewModel = AddContactViewModel(
+            repositoryManager = RepositoryManager(
+                ContactsRepo(this)
+            )
         )
 
-        CoroutineScope(Dispatchers.IO).launch {
-            repositoryManager.addContact(contact)
-        }
+        layout = DataBindingUtil.setContentView(this, R.layout.add_contact_activity_layout)
+        layout.lifecycleOwner = this
+        layout.viewModel = viewModel
     }
 }
