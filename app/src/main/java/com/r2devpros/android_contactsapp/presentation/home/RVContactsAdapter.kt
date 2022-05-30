@@ -4,9 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.r2devpros.android_contactsapp.databinding.ContactListItemLayoutBinding
-import timber.log.Timber
+import com.r2devpros.android_contactsapp.model.Contact
 
-class RVContactsAdapter : RecyclerView.Adapter<RVContactsAdapter.ViewHolder>() {
+class RVContactsAdapter(
+    private val listener: (Contact) -> Unit
+) : RecyclerView.Adapter<RVContactsAdapter.ViewHolder>() {
     var itemList: List<ContactListItemViewModel> = emptyList()
         set(value) {
             field = value
@@ -15,8 +17,10 @@ class RVContactsAdapter : RecyclerView.Adapter<RVContactsAdapter.ViewHolder>() {
 
     inner class ViewHolder(val layout: ContactListItemLayoutBinding) :
         RecyclerView.ViewHolder(layout.root) {
-        fun bind() {
-            Timber.d("ViewHolder_TAG: bind: ")
+        fun bind(contact: Contact, listener: (Contact) -> Unit) {
+            itemView.setOnClickListener {
+                listener(contact)
+            }
         }
     }
 
@@ -27,8 +31,11 @@ class RVContactsAdapter : RecyclerView.Adapter<RVContactsAdapter.ViewHolder>() {
             }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.layout.viewModel = itemList[position]
-        holder.bind()
+        val contactItemViewModel = itemList[position]
+        holder.layout.viewModel = contactItemViewModel
+        contactItemViewModel.contact?.let { contact ->
+            holder.bind(contact, listener)
+        }
         holder.layout.executePendingBindings()
     }
 
