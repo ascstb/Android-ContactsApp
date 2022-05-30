@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="50dp"
-        tools:context=".presentation.HomeActivity">
+        tools:context=".presentation.home.HomeActivity">
 
         <Button
             android:id="@+id/btnGoToAdd"
@@ -24,7 +24,8 @@
             android:layout_height="0dp"
             android:layout_marginTop="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnGoToAdd" />
+            app:layout_constraintTop_toBottomOf="@id/btnGoToAdd"
+            tools:listitem="@layout/contact_list_item_layout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -24,11 +24,6 @@ class AddContactViewModel(
             age = age.toIntOrNull() ?: 0
         )
 
-    fun getContacts() = CoroutineScope(Dispatchers.IO).launch {
-        val result = repositoryManager.getContacts()
-        Timber.d("AddContactViewModel_TAG: getContacts: ${result.size}")
-    }
-
     fun addContactClicked() = CoroutineScope(Dispatchers.IO).launch {
         Timber.d("AddContactViewModel_TAG: addContact: $contact")
         repositoryManager.addContact(contact)
