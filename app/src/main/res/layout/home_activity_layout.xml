@@ -18,15 +18,24 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvContacts"
+        <FrameLayout
+            android:id="@+id/flContactList"
             android:layout_width="500dp"
             android:layout_height="0dp"
             android:layout_marginTop="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnGoToAdd"
-            tools:listitem="@layout/contact_list_item_layout" />
+            app:layout_constraintTop_toBottomOf="@id/btnGoToAdd" />
+
+        <FrameLayout
+            android:id="@+id/flContactDetails"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/flContactList"
+            app:layout_constraintTop_toBottomOf="@id/btnGoToAdd" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
