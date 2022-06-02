@@ -20,10 +20,11 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvContacts"
-            android:layout_width="match_parent"
+            android:layout_width="500dp"
             android:layout_height="0dp"
             android:layout_marginTop="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnGoToAdd"
             tools:listitem="@layout/contact_list_item_layout" />
 

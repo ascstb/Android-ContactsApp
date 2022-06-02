@@ -6,6 +6,9 @@ import com.r2devpros.android_contactsapp.model.Contact
 class ContactListItemViewModel : ViewModel() {
     var contact: Contact? = null
 
+    val photoUrl: String?
+        get() = contact?.photo
+
     val name: String?
         get() = contact?.name
 
