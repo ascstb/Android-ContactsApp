@@ -11,6 +11,7 @@ import timber.log.Timber
 class AddContactViewModel(
     private val repositoryManager: RepositoryManager
 ) : ViewModel() {
+    var photo: String = ""
     var name: String = ""
     var lastName: String = ""
     var genre: String = ""
@@ -18,6 +19,7 @@ class AddContactViewModel(
 
     val contact: Contact
         get() = Contact(
+            photo = photo,
             name = name,
             lastName = lastName,
             genre = genre,

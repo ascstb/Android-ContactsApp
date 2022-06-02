@@ -12,6 +12,7 @@ data class Contact(
     @NonNull
     @PrimaryKey
     var contactId: String = UUID.randomUUID().toString(),
+    var photo: String,
     var name: String,
     var lastName: String,
     var genre: String,
@@ -22,12 +23,14 @@ data class Contact(
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
+        parcel.readString().toString(),
         parcel.readInt()
     ) {
     }
 
     override fun writeToParcel(parcel: Parcel, p1: Int) {
         parcel.writeString(contactId)
+        parcel.writeString(photo)
         parcel.writeString(name)
         parcel.writeString(lastName)
         parcel.writeString(genre)
