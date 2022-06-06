@@ -8,6 +8,7 @@ import com.r2devpros.android_contactsapp.R
 import com.r2devpros.android_contactsapp.databinding.HomeActivityLayoutBinding
 import com.r2devpros.android_contactsapp.model.Contact
 import com.r2devpros.android_contactsapp.presentation.addContact.AddContactActivity
+import com.r2devpros.android_contactsapp.presentation.home.contactDetailsFragment.ContactDetailsFragment
 import com.r2devpros.android_contactsapp.presentation.home.contactListFragment.ContactListFragment
 import com.r2devpros.android_contactsapp.presentation.home.contactListFragment.ContactListListener
 import com.r2devpros.android_contactsapp.repository.RepositoryManager
@@ -18,6 +19,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var layout: HomeActivityLayoutBinding
     private lateinit var viewModel: HomeViewModel
     private var contactListFragment: ContactListFragment? = null
+    private var contactDetailsFragment: ContactDetailsFragment? = null
 
     //region Life Cycle
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,16 +62,30 @@ class HomeActivity : AppCompatActivity() {
     private fun initFragments() {
         Timber.d("HomeActivity_TAG: initFragments: ")
 
-        contactListFragment = ContactListFragment(object : ContactListListener {
-            override fun onContactClicked(contact: Contact) {
-                Timber.d("HomeActivity_TAG: onContactClicked: $contact")
-            }
-        })
+        if (contactListFragment == null) {
+            contactListFragment = ContactListFragment(object : ContactListListener {
+                override fun onContactClicked(contact: Contact) {
+                    Timber.d("HomeActivity_TAG: onContactClicked: $contact")
+                    contactDetailsFragment?.displayContactInfo(contact)
+                }
+            })
+        }
 
         contactListFragment?.let {
             supportFragmentManager
                 .beginTransaction()
                 .add(R.id.flContactList, it)
+                .commit()
+        }
+
+        if (contactDetailsFragment == null) {
+            contactDetailsFragment = ContactDetailsFragment()
+        }
+
+        contactDetailsFragment?.let {
+            supportFragmentManager
+                .beginTransaction()
+                .add(R.id.flContactDetails, it)
                 .commit()
         }
     }

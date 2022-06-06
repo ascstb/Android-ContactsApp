@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ContactDetails" />
+
+    <style name="ContactDetails.Label">
+        <item name="android:textSize">32sp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ContactDetails.Value">
+        <item name="android:textSize">32sp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:textColor">@color/action_color</item>
+        <item name="android:layout_marginStart">20dp</item>
+    </style>
+</resources>

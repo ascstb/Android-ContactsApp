@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.r2devpros.android_contactsapp.presentation.home.contactDetailsFragment.ContactDetailsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="30dp">
+
+        <ImageView
+            android:id="@+id/ivPhoto"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:contentDescription="@string/contact_add_photo_label"
+            app:imageUrl="@{viewModel.photoUrl}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--region Labels-->
+        <TextView
+            android:id="@+id/tvNameLabel"
+            style="@style/ContactDetails.Label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/contact_add_name_label"
+            android:visibility="@{viewModel.labelsVisible}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivPhoto" />
+
+        <TextView
+            android:id="@+id/tvLastNameLabel"
+            style="@style/ContactDetails.Label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/contact_add_last_name_label"
+            android:visibility="@{viewModel.labelsVisible}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvNameLabel" />
+
+        <TextView
+            android:id="@+id/tvGenreLabel"
+            style="@style/ContactDetails.Label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/contact_add_genre_label"
+            android:visibility="@{viewModel.labelsVisible}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvLastNameLabel" />
+
+        <TextView
+            android:id="@+id/tvAgeLabel"
+            style="@style/ContactDetails.Label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/contact_add_age_label"
+            android:visibility="@{viewModel.labelsVisible}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvGenreLabel" />
+        <!--endregion-->
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="tvNameLabel,tvLastNameLabel,tvGenreLabel,tvAgeLabel" />
+
+        <!--region Values-->
+        <TextView
+            android:id="@+id/tvName"
+            style="@style/ContactDetails.Value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.name}"
+            app:layout_constraintBottom_toBottomOf="@id/tvNameLabel"
+            app:layout_constraintStart_toEndOf="@id/barrier1"
+            app:layout_constraintTop_toTopOf="@id/tvNameLabel"
+            tools:text="Arturo" />
+
+        <TextView
+            android:id="@+id/tvLastName"
+            style="@style/ContactDetails.Value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.lastName}"
+            app:layout_constraintBottom_toBottomOf="@id/tvLastNameLabel"
+            app:layout_constraintStart_toEndOf="@id/barrier1"
+            app:layout_constraintTop_toTopOf="@id/tvLastNameLabel"
+            tools:text="Sanchez" />
+
+        <TextView
+            android:id="@+id/tvGenre"
+            style="@style/ContactDetails.Value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.genre}"
+            app:layout_constraintBottom_toBottomOf="@id/tvGenreLabel"
+            app:layout_constraintStart_toEndOf="@id/barrier1"
+            app:layout_constraintTop_toTopOf="@id/tvGenreLabel"
+            tools:text="Male" />
+
+        <TextView
+            android:id="@+id/tvAge"
+            style="@style/ContactDetails.Value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.age}"
+            app:layout_constraintBottom_toBottomOf="@id/tvAgeLabel"
+            app:layout_constraintStart_toEndOf="@id/barrier1"
+            app:layout_constraintTop_toTopOf="@id/tvAgeLabel"
+            tools:text="32" />
+        <!--endregion-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
